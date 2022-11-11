@@ -46,4 +46,9 @@ public class FilesController {
     public ResponseEntity<?> downloadFile(@RequestParam("subtype") int subtype) throws IOException {
         return ResponseEntity.ok(fileStoreService.getMetaFiles(subtype));
     }
+
+    @DeleteMapping("/delfile")
+    public void deleteFile(@RequestParam("hash") UUID hash) throws IOException {
+        fileStoreService.deleteFile(hash);
+    }
 }

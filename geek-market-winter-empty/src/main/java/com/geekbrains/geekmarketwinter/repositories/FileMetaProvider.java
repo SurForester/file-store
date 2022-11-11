@@ -22,6 +22,7 @@ public class FileMetaProvider implements IFileMetaProvider {
     private static final String SAVE_FILE_META_DATA = "insert into vma.file_info_metadata (hash, filename, sub_type)\n" +
             "values (:hash, :finame, :subtype)";
 
+    private static final String DELETE_FILE_PATH_BY_HASH = "delete from vma.file_info_metadata where hash = :hash";
     private final Sql2o sql2o;
 
     public FileMetaProvider(@Autowired Sql2o sql2o) {
@@ -45,6 +46,15 @@ public class FileMetaProvider implements IFileMetaProvider {
                     .addParameter("hash", fileHash)
                     .addParameter("finame", fileName)
                     .addParameter("subtype", sybType)
+                    .executeUpdate();
+        }
+    }
+
+    @Override
+    public void deleteFileMeta(UUID Hash) {
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery(DELETE_FILE_PATH_BY_HASH)
+                    .addParameter("hash", Hash)
                     .executeUpdate();
         }
     }
