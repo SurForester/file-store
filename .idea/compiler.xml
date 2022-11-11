@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="geek-market-winter" target="1.8" />
+      <module name="geek-market-winter" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
